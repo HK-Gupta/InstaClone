@@ -40,6 +40,10 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+        binding.gotoSignUp.setOnClickListener {
+            startActivity(Intent(this, SignUp::class.java))
+            finish()
+        }
     }
 
     private fun showToast(message: String) {

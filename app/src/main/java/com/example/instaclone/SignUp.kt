@@ -1,12 +1,14 @@
 package com.example.instaclone
 
 import android.content.Intent
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.example.instaclone.models.UserModel
 import com.example.instaclone.databinding.ActivitySignUpBinding
 import com.example.instaclone.utils.USER_NODE
@@ -45,9 +47,17 @@ class SignUp : AppCompatActivity() {
         setContentView(binding.root)
         user = UserModel()
 
+        // Adding the two color text in the Goto Login TextView
+        val text = "<font color=#FFFFFF>Already have an account</font> <font color=#007ACC>Login?</font>"
+        binding.gotoLogin.setText(Html.fromHtml(text))
+
         if(intent.hasExtra("MODE") && intent.getIntExtra("MODE", -1) == 1) {
             binding.btnSignUp.text = "Update Profile"
-            binding.gotoLogin.visibility = View.INVISIBLE
+            binding.gotoLogin.text = "Log Out"
+            binding.gotoLogin.setTextColor(ContextCompat.getColor(this, R.color.stroke))
+            binding.gotoLogin.textSize = (18).toFloat()
+            binding.gotoLogin.setTypeface(null, Typeface.BOLD)
+
             Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid)
                 .get().addOnSuccessListener {
                     user = it.toObject<UserModel>()!!
@@ -58,10 +68,8 @@ class SignUp : AppCompatActivity() {
                     binding.edtEmail.editText?.setText(user.email)
                     binding.edtPassword.editText?.setText(user.password)
                 }
+
         }
-        // Adding the two color text in the Goto Login TextView
-        val text = "<font color=#000000>Already have an account</font> <font color=#2080FF>Login?</font>"
-        binding.gotoLogin.setText(Html.fromHtml(text))
 
         binding.btnSignUp.setOnClickListener {
             if(intent.hasExtra("MODE") && intent.getIntExtra("MODE", -1) == 1) {
@@ -108,6 +116,9 @@ class SignUp : AppCompatActivity() {
         }
 
         binding.gotoLogin.setOnClickListener {
+            if(intent.hasExtra("MODE") && intent.getIntExtra("MODE", -1) == 1) {
+                Firebase.auth.signOut()
+            }
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

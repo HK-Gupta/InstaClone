@@ -41,7 +41,6 @@ class SearchAdapter(var context: Context, var userList: ArrayList<UserModel>): R
             else {
                 isFollow = true
                 holder.binding.follow.text = "Unfollow"
-                holder.binding.follow.setBackgroundResource(R.color.white)
             }
         }
         holder.binding.follow.setOnClickListener {
@@ -53,13 +52,11 @@ class SearchAdapter(var context: Context, var userList: ArrayList<UserModel>): R
                     }
                 isFollow = false
                 holder.binding.follow.text = "Follow"
-                holder.binding.follow.setBackgroundResource(R.color.white)
             } else {
                 Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
                     .document().set(userList[position])
                 isFollow = true
                 holder.binding.follow.text = "Un Follow"
-                holder.binding.follow.setBackgroundResource(R.color.white)
             }
 
         }

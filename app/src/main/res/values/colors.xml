@@ -2,6 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="btn_color">#FF2080FF</color>
+    <color name="btn_color">#FF007ACC</color>
+    <color name="text_color">#FF00FFFF</color>
+    <color name="background">#FF1E1E1E</color>
+    <color name="action">#FF2A2A2A</color>
+    <color name="bottom_nav">#FF333333</color>
     <color name="stroke">#FF3465</color>
 </resources>

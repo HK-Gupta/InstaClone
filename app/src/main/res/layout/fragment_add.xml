@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     tools:context=".fragments.AddFragment"
     android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/action">
 
     <LinearLayout
         android:id="@+id/post_layout"
@@ -29,7 +30,7 @@
             android:layout_marginStart="18dp"
             android:text="Add Post"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>
 
@@ -55,7 +56,7 @@
             android:layout_marginStart="18dp"
             android:text="Add Reel"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>
 

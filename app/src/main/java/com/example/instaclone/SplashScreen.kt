@@ -12,7 +12,7 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler(mainLooper).postDelayed({
-            if(FirebaseAuth.getInstance()==null)  {
+            if(FirebaseAuth.getInstance().currentUser==null)  {
                 startActivity(Intent(this, LoginActivity::class.java))
             } else {
                 startActivity(Intent(this, HomeActivity::class.java))
